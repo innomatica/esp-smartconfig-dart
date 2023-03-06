@@ -50,12 +50,6 @@ class Provisioner {
     );
   }
 
-  void dispose() {
-    if (!_streamCtrl.isClosed) {
-      _streamCtrl.close();
-    }
-  }
-
   /// Start provisioning using [request]
   ///
   /// Provisioning will not stop automatically.
@@ -214,9 +208,9 @@ class Provisioner {
 
   /// Stop provisioning that is previously started with [start] method
   void stop() {
-    // if (!_streamCtrl.isClosed) {
-    //   _streamCtrl.close();
-    // }
+    if (!_streamCtrl.isClosed) {
+      _streamCtrl.close();
+    }
 
     if (running) {
       _logger.debug("Destroying isolate");
